@@ -1,5 +1,5 @@
 {
-  "name": "smooch-api-quickstart-sample",
+  "name": "smooch-api-quickstart-example",
   "version": "1.0.0",
   "description": "Sample code to get started with the Smooch REST APIs",
   "main": "index.js",
@@ -11,7 +11,6 @@
   "dependencies": {
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "jsonwebtoken": "7.1.9",
-    "superagent": "3.1.0"
+    "smooch-core": "2.1.1"
   }
 }
