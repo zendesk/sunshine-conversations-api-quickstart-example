@@ -9,6 +9,8 @@ For a detailed guide, see the [Smooch API Quickstart](https://docs.smooch.io/doc
 1. Clone the repository
 2. Go to the _nodejs_ subdirectory
 3. Update index.js to include your secret key and key ID from your [Smooch](app.smooch.io) settings
+![Smooch App settings](http://i.imgur.com/9O7h9CM.png)
+![Smooch Create new secret key](http://i.imgur.com/Yp7dlO3.png)
 4. Install dependencies (`npm install`)
 5. Run the server (`node index`)
 6. Use [ngrok](https://ngrok.com/) to create a secure tunnel to port 8000
