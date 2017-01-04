@@ -2,7 +2,10 @@
 
 ## Get started
 
-For a detailed guide, see the [Smooch API Quickstart](https://docs.smooch.io/docs/api-quickstart)
+For a detailed guide, see the [Smooch API Quickstart](https://docs.smooch.io/docs/api-quickstart) and [our API QuickStart video tutorial](https://vimeo.com/198071401"):
+
+<a href="https://vimeo.com/198071401" target="_blank"><img src="https://i.vimeocdn.com/video/610957143.webp?mw=1800&mh=1013&q=70"
+alt="VIMEO" width="240" border="10" /></a>
 
 ### Node.js
 
