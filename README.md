@@ -6,7 +6,7 @@ For a detailed guide, see the [Smooch API Quickstart](https://docs.smooch.io/doc
 
 ## First Step
 
-This branch, "Step1", expands on "Start" to show how to receive a webhook and log it to the console.
+This branch, "Step2", imports smooch-core-js and authenticates to Smooch.
 
 ### Node.js
 
