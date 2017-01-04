@@ -6,7 +6,7 @@ For a detailed guide, see the [Smooch API Quickstart](https://docs.smooch.io/doc
 
 ## First Step
 
-This branch, "Start", contains a basic, empty Express app from which the rest of the demo is built. If you want to see the server built in stages, take a look at the other branches named "StepN". The complete example is available in the master branch. 
+This branch, "Step1", expands on "Start" to show how to receive a webhook and log it to the console.
 
 ### Node.js
 
