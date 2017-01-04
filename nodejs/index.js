@@ -12,6 +12,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.post('/message', function(req, res) {
+  console.log('Webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
+});
+
 // Listen on port
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
