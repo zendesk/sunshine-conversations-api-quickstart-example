@@ -13,7 +13,7 @@ For a detailed guide, see the [Smooch API Quickstart](https://docs.smooch.io/doc
 ![Smooch Create new secret key](http://i.imgur.com/Yp7dlO3.png)
 4. Install dependencies (`npm install`)
 5. Run the server (`node index`)
-6. Use [ngrok](https://ngrok.com/) to create a secure tunnel to port 8000
+6. Use [ngrok](https://ngrok.com/) to create a secure tunnel to port 8000(`ngrok http 8000` after ngrok is installed on your PC)
 7. Create a Facebook page and [connect it to Smooch](https://app.smooch.io/integrations/messenger)
 8. Create a Webhook from your [dashboard](https://app.smooch.io/integrations/webhook) and point it at the full url for the /messages endpoint (e.g. https://https://MY-NGROK-DOMAIN.ngrok.io/messages )
 9. Send messages to your Facebook page and watch the auto-replies roll in
