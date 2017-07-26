@@ -10,7 +10,7 @@ alt="VIMEO" width="240" border="10" /></a>
 ### Node.js
 
 1. Clone the repository
-2. Go to the _nodejs_ subdirectory
+2. Go to the _/nodejs_ subdirectory
 3. Update index.js to include your secret key and key ID from your [Smooch](https://app.smooch.io) settings
 ![Smooch App settings](http://i.imgur.com/oUlMAqz.png)
 ![Smooch Create new secret key](http://i.imgur.com/Yp7dlO3.png)
@@ -20,6 +20,31 @@ alt="VIMEO" width="240" border="10" /></a>
 7. Create a Facebook page and [connect it to Smooch](https://app.smooch.io/integrations/messenger)
 8. Create a Webhook from your [dashboard](https://app.smooch.io/integrations/webhook) and point it at the full url for the /messages endpoint (e.g. https://MY-NGROK-DOMAIN.ngrok.io/messages )
 9. Send messages to your Facebook page and watch the auto-replies roll in
+
+### Scala
+
+Go to _/scala_ subdirectory.
+
+Get a userId from your application and change
+
+```
+# Main.scala
+val userId = "aaaabbbb11112222ccccdddd"
+```
+
+Setup your app keyId and secret here
+```
+# application.conf
+smooch {
+  keyId = "app_aaaa1111bbbb3333cccc5555"
+  secret = "AAAA0000BBBB1111ccccDDDD"
+}
+```
+
+To run the webhook microservice, just do
+```
+$ sbt run
+```
 
 ### Python
 
