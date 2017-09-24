@@ -1,0 +1,4 @@
+<key>NSPhotoLibraryUsageDescription</key>
+<string>${PRODUCT_NAME} will use your photo library to gather additional information</string>
+<key>NSCameraUsageDescription</key>
+<string>${PRODUCT_NAME} will use your camera to gather additional information</string>
