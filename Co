@@ -1,0 +1,7 @@
+network
+  eth0
+    ip   192.168.0.10
+    mask 255.255.255.0
+    gw   192.168.0.1
+
+hostname crispin
