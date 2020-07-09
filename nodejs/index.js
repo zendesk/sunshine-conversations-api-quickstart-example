@@ -7,8 +7,8 @@ const Smooch = require('smooch-core');
 
 // Config
 const PORT = 8000;
-const KEY_ID = 'your_key_id';
-const SECRET = 'your_secret_key';
+const KEY_ID = 'app_5f04d0d83dfc64000c143f7c';
+const SECRET = '4iMCHWOaJnZcfGAn3ulthRl2WCY5QRGxrt5pq23v-2ZgZVt1QVk0NS2TT3FfArA1WMw-dgXxJcrt0q7gnMdAPw';
 
 const smooch = new Smooch({
     keyId: KEY_ID,
@@ -20,6 +20,9 @@ const smooch = new Smooch({
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // Expose /messages endpoint to capture webhooks https://docs.smooch.io/rest/#webhooks-payload
 app.post('/messages', function(req, res) {
@@ -27,8 +30,13 @@ app.post('/messages', function(req, res) {
 
   const appUserId = req.body.appUser._id;
   // Call REST API to send message https://docs.smooch.io/rest/#post-message
-  if (req.body.trigger === 'message:appUser') {
-      smooch.appUsers.sendMessage(appUserId, {
+
+  const x = req.body
+
+  if ((x.trigger === 'message:appUser') && (x.messages[0].source.type === 'messenger')) {
+
+    console.log(x.messages)  
+    smooch.appUsers.sendMessage(appUserId, {
           type: 'text',
           text: 'Live long and prosper',
           role: 'appMaker'
