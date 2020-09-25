@@ -3,18 +3,17 @@
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
-const Smooch = require('smooch-core');
+const SunshineConversationsApi = require('./dist/smooch-core-v2');
+
 
 // Config
+let defaultClient = SunshineConversationsApi.ApiClient.instance;
+let basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'app_5f621864eeda8f000c4ca199'
+basicAuth.password = 'CJ2mNgfrhDCTK7UIvA9dEBMEH3obo2O-GnMCk88K-1OHU01PltrcAzURWfl_b-9TjwZ9Up2oT8DjQetCd-FZlg'
 const PORT = 8000;
-const KEY_ID = 'your_key_id';
-const SECRET = 'your_secret_key';
 
-const smooch = new Smooch({
-    keyId: KEY_ID,
-    secret: SECRET,
-    scope: 'app'
-});
+const apiInstance = new SunshineConversationsApi.MessagesApi()
 
 // Server https://expressjs.com/en/guide/routing.html
 const app = express();
@@ -25,22 +24,13 @@ app.use(bodyParser.json());
 app.post('/messages', function(req, res) {
   console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
 
-  const appUserId = req.body.appUser._id;
+  const conversationId = req.body.conversation._id;
+  const appId = req.body.app._id;
+
   // Call REST API to send message https://docs.smooch.io/rest/#post-message
   if (req.body.trigger === 'message:appUser') {
-      smooch.appUsers.sendMessage(appUserId, {
-          type: 'text',
-          text: 'Live long and prosper',
-          role: 'appMaker'
-      })
-          .then((response) => {
-              console.log('API RESPONSE:\n', response);
-              res.end();
-          })
-          .catch((err) => {
-              console.log('API ERROR:\n', err);
-              res.end();
-          });
+    sendMessage(appId, conversationId);
+    res.end();
   }
 });
 
@@ -48,3 +38,11 @@ app.post('/messages', function(req, res) {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
+
+async function sendMessage(appId, conversationId){
+    let messagePost = new SunshineConversationsApi.MessagePost();  
+    messagePost.setAuthor({role: 'business'});
+    messagePost.setContent({type: 'text', text: 'Live long and propser'});
+    let response = await apiInstance.postMessage(appId, conversationId, messagePost);
+    console.log('API RESPONSE:\n', response);
+}
