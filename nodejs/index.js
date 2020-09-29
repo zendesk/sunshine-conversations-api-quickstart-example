@@ -24,12 +24,12 @@ app.use(bodyParser.json());
 app.post('/messages', function(req, res) {
   console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
 
-  const conversationId = req.body.events[0].payload.conversation.id;
   const appId = req.body.app.id;
   const trigger = req.body.events[0].type;
 
   // Call REST API to send message https://docs.smooch.io/rest/#operation/postMessage
   if (trigger === 'conversation:message') {
+    const conversationId = req.body.events[0].payload.conversation.id;
     await sendMessage(appId, conversationId);
     res.end();
   }
@@ -42,8 +42,8 @@ app.listen(PORT, () => {
 
 async function sendMessage(appId, conversationId){
     let messagePost = new SunshineConversationsApi.MessagePost();  
-    messagePost.setAuthor({role: 'business'});
-    messagePost.setContent({type: 'text', text: 'Live long and propser'});
+    messagePost.setAuthor({type: 'business'});
+    messagePost.setContent({type: 'text', text: 'Live long and prosper'});
     let response = await apiInstance.postMessage(appId, conversationId, messagePost);
     console.log('API RESPONSE:\n', response);
 }
