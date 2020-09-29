@@ -11,8 +11,6 @@
   "dependencies": {
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "smooch-core": "2.1.1",
-    "@babel/cli": "^7.0.0",
-    "superagent": "3.7.0"
+    "sunshine-conversations-client": "6.0.0"
   }
 }

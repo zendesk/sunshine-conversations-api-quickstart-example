@@ -3,14 +3,14 @@
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
-const SunshineConversationsApi = require('./dist/smooch-core-v2');
+const SunshineConversationsApi = require('sunshine-conversations-client');
 
 
 // Config
 let defaultClient = SunshineConversationsApi.ApiClient.instance;
 let basicAuth = defaultClient.authentications['basicAuth'];
-basicAuth.username = 'app_5f621864eeda8f000c4ca199'
-basicAuth.password = 'CJ2mNgfrhDCTK7UIvA9dEBMEH3obo2O-GnMCk88K-1OHU01PltrcAzURWfl_b-9TjwZ9Up2oT8DjQetCd-FZlg'
+basicAuth.username = 'your_key_id';
+basicAuth.password = 'your_secret_key';
 const PORT = 8000;
 
 const apiInstance = new SunshineConversationsApi.MessagesApi()
@@ -20,16 +20,17 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// Expose /messages endpoint to capture webhooks https://docs.smooch.io/rest/#webhooks-payload
+// Expose /messages endpoint to capture webhooks https://docs.smooch.io/rest/#operation/eventWebhooks
 app.post('/messages', function(req, res) {
   console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
 
-  const conversationId = req.body.conversation._id;
-  const appId = req.body.app._id;
+  const conversationId = req.body.events[0].payload.conversation.id;
+  const appId = req.body.app.id;
+  const trigger = req.body.events[0].type;
 
-  // Call REST API to send message https://docs.smooch.io/rest/#post-message
-  if (req.body.trigger === 'message:appUser') {
-    sendMessage(appId, conversationId);
+  // Call REST API to send message https://docs.smooch.io/rest/#operation/postMessage
+  if (trigger === 'conversation:message') {
+    await sendMessage(appId, conversationId);
     res.end();
   }
 });
