@@ -29,8 +29,8 @@ app.post('/messages', function(req, res) {
 
   // Call REST API to send message https://docs.smooch.io/rest/#operation/postMessage
   if (trigger === 'conversation:message') {
-    const author = req.body.events[0].payload.message.author.type;
-    if(author === 'user'){
+    const authorType = req.body.events[0].payload.message.author.type;
+    if(authorType === 'user'){
         const conversationId = req.body.events[0].payload.conversation.id;
         await sendMessage(appId, conversationId);
         res.end();
