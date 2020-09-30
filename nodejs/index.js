@@ -32,7 +32,7 @@ app.post('/messages', function(req, res) {
     const authorType = req.body.events[0].payload.message.author.type;
     if(authorType === 'user'){
         const conversationId = req.body.events[0].payload.conversation.id;
-        await sendMessage(appId, conversationId);
+        sendMessage(appId, conversationId);
         res.end();
     }
   }
