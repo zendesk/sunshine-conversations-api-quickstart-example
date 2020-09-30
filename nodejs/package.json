@@ -11,6 +11,6 @@
   "dependencies": {
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "smooch-core": "2.1.1"
+    "sunshine-conversations-client": "^9.0.0"
   }
 }

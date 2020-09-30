@@ -3,44 +3,38 @@
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
-const Smooch = require('smooch-core');
+const SunshineConversationsApi = require('sunshine-conversations-client');
+
 
 // Config
+let defaultClient = SunshineConversationsApi.ApiClient.instance;
+let basicAuth = defaultClient.authentications['basicAuth'];
+basicAuth.username = 'your_key_id';
+basicAuth.password = 'your_secret_key';
 const PORT = 8000;
-const KEY_ID = 'your_key_id';
-const SECRET = 'your_secret_key';
 
-const smooch = new Smooch({
-    keyId: KEY_ID,
-    secret: SECRET,
-    scope: 'app'
-});
+const apiInstance = new SunshineConversationsApi.MessagesApi()
 
 // Server https://expressjs.com/en/guide/routing.html
 const app = express();
 
 app.use(bodyParser.json());
 
-// Expose /messages endpoint to capture webhooks https://docs.smooch.io/rest/#webhooks-payload
+// Expose /messages endpoint to capture webhooks https://docs.smooch.io/rest/#operation/eventWebhooks
 app.post('/messages', function(req, res) {
   console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
 
-  const appUserId = req.body.appUser._id;
-  // Call REST API to send message https://docs.smooch.io/rest/#post-message
-  if (req.body.trigger === 'message:appUser') {
-      smooch.appUsers.sendMessage(appUserId, {
-          type: 'text',
-          text: 'Live long and prosper',
-          role: 'appMaker'
-      })
-          .then((response) => {
-              console.log('API RESPONSE:\n', response);
-              res.end();
-          })
-          .catch((err) => {
-              console.log('API ERROR:\n', err);
-              res.end();
-          });
+  const appId = req.body.app.id;
+  const trigger = req.body.events[0].type;
+
+  // Call REST API to send message https://docs.smooch.io/rest/#operation/postMessage
+  if (trigger === 'conversation:message') {
+    const authorType = req.body.events[0].payload.message.author.type;
+    if(authorType === 'user'){
+        const conversationId = req.body.events[0].payload.conversation.id;
+        sendMessage(appId, conversationId);
+        res.end();
+    }
   }
 });
 
@@ -48,3 +42,11 @@ app.post('/messages', function(req, res) {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
+
+async function sendMessage(appId, conversationId){
+    let messagePost = new SunshineConversationsApi.MessagePost();  
+    messagePost.setAuthor({type: 'business'});
+    messagePost.setContent({type: 'text', text: 'Live long and prosper'});
+    let response = await apiInstance.postMessage(appId, conversationId, messagePost);
+    console.log('API RESPONSE:\n', response);
+}
