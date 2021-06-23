@@ -9,8 +9,8 @@ const SunshineConversationsApi = require('sunshine-conversations-client');
 // Config
 let defaultClient = SunshineConversationsApi.ApiClient.instance;
 let basicAuth = defaultClient.authentications['basicAuth'];
-basicAuth.username = 'app_605c6c5312161900d2bb33c4';
-basicAuth.password = 'XWOD3LDaHgDdNd8XW5YwjGr071ydp8MkxWmQsKZp3cmSOngGi3xtELZBsKI5cMXpK7LGmqhtBIfCm5LyWWRj7A';
+basicAuth.username = 'your_key_id';
+basicAuth.password = 'your_secret_key';
 const PORT = 8000;
 
 const apiInstance = new SunshineConversationsApi.MessagesApi()
