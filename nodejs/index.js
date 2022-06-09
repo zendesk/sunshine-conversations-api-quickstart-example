@@ -33,9 +33,12 @@ app.post('/messages', function(req, res) {
     if(authorType === 'user'){
         const conversationId = req.body.events[0].payload.conversation.id;
         sendMessage(appId, conversationId);
-        res.end();
+        return res.status(200).end();
     }
   }
+  
+  // Always close res to avoid 'active handles'
+  return res.status(404).end()
 });
 
 // Listen on port
