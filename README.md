@@ -12,7 +12,7 @@ For a detailed guide, see the [Sunshine Conversations API Quickstart](https://do
 4. Install dependencies (`npm install`)
 5. Run the server (`node index`)
 6. Use [ngrok](https://ngrok.com/) to create a secure tunnel to port 8000(`ngrok http 8000` after ngrok is installed on your PC)
-7. Create a Facebook page and [connect it to Smooch](https://app.smooch.io/integrations/messenger)
+7. Create a Facebook page and [connect it to Sunshine Conversations](https://app.smooch.io/integrations/messenger)
 
 ### Scala
 
