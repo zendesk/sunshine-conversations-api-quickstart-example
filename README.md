@@ -15,3 +15,28 @@ For a detailed guide, see the [Sunshine Conversations API Quickstart](https://do
 7. Create a Facebook page and [connect it to Sunshine Conversations](https://app.smooch.io/integrations/messenger)
 8. Create a Webhook from your [dashboard](https://app.smooch.io/integrations/webhook) and point it at the full url for the /messages endpoint (e.g. https://MY-NGROK-DOMAIN.ngrok.io/messages )
 9. Send messages to your Facebook page and watch the auto-replies roll in
+
+### Scala
+
+Go to _/scala_ subdirectory.
+
+Get a userId from your application and change
+
+```
+# Main.scala
+val userId = "aaaabbbb11112222ccccdddd"
+```
+
+Setup your app keyId and secret here
+```
+# application.conf
+smooch {
+  keyId = "app_aaaa1111bbbb3333cccc5555"
+  secret = "AAAA0000BBBB1111ccccDDDD"
+}
+```
+
+To run the webhook microservice, just do
+```
+$ sbt run
+```
