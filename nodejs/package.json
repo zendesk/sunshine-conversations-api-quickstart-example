@@ -9,8 +9,8 @@
   "author": "zendesk",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "1.19.0",
-    "express": "4.17.1",
-    "sunshine-conversations-client": "^14.4.0"
+    "body-parser": "1.20.4",
+    "express": "4.22.1",
+    "sunshine-conversations-client": "14.4.0"
   }
 }
